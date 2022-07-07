@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 import { Heroe } from '../../interfaces/heroes.interface';
@@ -10,12 +10,9 @@ import { HeroesService } from '../../services/heroes.service';
   styles: [
   ]
 })
-export class BuscarComponent implements OnInit {
+export class BuscarComponent {
 
   constructor( private heroesService:HeroesService ) { }
-
-  ngOnInit(): void {
-  }
 
   termino:string = '';
   heroes: Heroe[] = [];
