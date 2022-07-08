@@ -168,12 +168,12 @@
       "characters": "Norrin Radd"
     },
     {
-      "superhero": "Lapru",
-      "alter_ego": "Eba",
+      "superhero": "Robin",
+      "alter_ego": "Dick Grayson",
       "characters": "Si",
-      "first_appearance": "La nro 1",
-      "publisher": "Marvel Comics",
-      "alt_img": "",
+      "first_appearance": "Detective Comics #38",
+      "publisher": "DC Comics",
+      "alt_img": "https://i.pinimg.com/originals/ee/43/43/ee43430fa97a687aaeb5b47909d06fb7.gif",
       "id": "VbYtC87"
     }
   ]
