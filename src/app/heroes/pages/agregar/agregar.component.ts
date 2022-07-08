@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 import { switchMap } from 'rxjs/operators';
 
 import { Heroe, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 
 @Component({
   selector: 'app-agregar',
@@ -22,7 +25,8 @@ export class AgregarComponent implements OnInit {
   constructor( private heroeService:HeroesService,
                private activatedRoute:ActivatedRoute,
                private router:Router,
-               private snackbar:MatSnackBar ) {}
+               private snackbar:MatSnackBar,
+               private dialog:MatDialog ) {}
 
   ngOnInit(): void {
 
@@ -79,12 +83,26 @@ export class AgregarComponent implements OnInit {
   }
 
   borrarHeroe() {
-    this.heroeService.deleteHeroe( this.heroe.id! )
-      .subscribe({
-        next: () => {
-          this.router.navigate(['/heroes']);
+
+    const dialog = this.dialog.open( ConfirmarComponent, 
+                                     { 
+                                       width:'250px', 
+                                       data:{...this.heroe} 
+                                     });
+
+    dialog.afterClosed().subscribe({
+      next: (rtdo) => {
+        if(rtdo) {
+          this.heroeService.deleteHeroe( this.heroe.id! )
+            .subscribe({
+              next: () => {
+                this.router.navigate(['/heroes']);
+              }
+            });
         }
-      });
+      }
+    })
+
   }
 
   mostrarSnackbar( mensaje:string ) {
